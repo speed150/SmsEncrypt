@@ -18,3 +18,6 @@ fun Long.parseDate():String{
     val format = SimpleDateFormat("dd/MMM/yyyy HH:mm", Locale.getDefault())
     return format.format(date)
 }
+//TODO model wszystkich wiadomości
+//TODO viewmodel posortowanych wiadomości(jest już w MainScreen prawie gotowy)
+//TODO wiewmodel rozmów(SMSMessage.thread)[ostatniawiadomość z danegej rozmowy]

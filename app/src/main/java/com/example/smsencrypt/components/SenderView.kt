@@ -20,7 +20,7 @@ fun SenderView(sender: String) {
         modifier = Modifier
             .fillMaxWidth()
             .size(64.dp)
-            .background(MaterialTheme.colorScheme.surface),
+            .background(MaterialTheme.colorScheme.error),
         contentAlignment = Alignment.Center
     ) {
         Text(

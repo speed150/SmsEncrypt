@@ -34,7 +34,7 @@ import com.example.smsencrypt.model.parseDate
                     context = context,
                     type = "sent"
                 )
-            allMessages += messages.sortedBy { it.date }.filter { it.sender=="+48501772055" }.groupBy { it.sender}
+            allMessages += messages.sortedBy { it.date }/*.filter { it.sender=="+48501772055" }*/.groupBy { it.sender}
 
         }
 
@@ -72,8 +72,8 @@ import com.example.smsencrypt.model.parseDate
             }
         }
     }
-
-            private fun readMessages(context: Context, type: String): List<SMSMessage> {
+//TODO ↓ to na 99% powinno być w Modelu/viewmodelu
+private fun readMessages(context: Context, type: String): List<SMSMessage> {
         val messages = mutableListOf<SMSMessage>()
         val cursor = context.contentResolver.query(
             Uri.parse("content://sms/$type"),
