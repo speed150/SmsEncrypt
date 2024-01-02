@@ -34,7 +34,7 @@ import com.example.smsencrypt.model.parseDate
                     context = context,
                     type = "sent"
                 )
-            allMessages += messages.sortedBy { it.date }.filter { it.sender=="+48501772055" }.groupBy { it.sender}
+            allMessages += messages.sortedBy { it.date }.groupBy { it.sender}
 
         }
 
