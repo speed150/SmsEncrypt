@@ -1,32 +1,20 @@
-package com.example.smsencrypt.navigation
+package com.example.smsencrypt
 
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import com.example.smsencrypt.MainScreen
-import com.example.smsencrypt.PermissionScreen
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.navigation.compose.rememberNavController
+import com.example.smsencrypt.navigation.SetupNavGraph
+import com.example.smsencrypt.ui.theme.SmsEncryptTheme
 
-
-@Composable
-fun SetupNavGraph(
-    navController: NavHostController,
-    startDestination: String = Screen.Permission.route
-) {
-    NavHost(
-        navController = navController,
-        startDestination = startDestination){
-        composable(route = Screen.Permission.route) {
-            PermissionScreen(
-                onPermissionGranted = {
-                    navController.popBackStack()
-                    navController.navigate(Screen.Main.route)
-                }
-            )
-        }
-        composable(route=Screen.Main.route){
-            MainScreen()
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            SmsEncryptTheme {
+                val navController = rememberNavController()
+                SetupNavGraph(navController = navController)
+            }
         }
     }
-
 }

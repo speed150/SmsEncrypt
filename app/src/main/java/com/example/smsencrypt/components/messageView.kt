@@ -1,6 +1,5 @@
 package com.example.smsencrypt.components
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +18,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.smsencrypt.model.SMSMessage
 import com.example.smsencrypt.model.parseDate
-
 
 @Composable
 fun MessageView(message: SMSMessage) {
