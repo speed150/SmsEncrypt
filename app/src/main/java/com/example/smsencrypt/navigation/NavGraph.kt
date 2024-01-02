@@ -15,7 +15,8 @@ fun SetupNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination){
+        startDestination = startDestination
+    ) {
         composable(route = Screen.Permission.route) {
             PermissionScreen(
                 onPermissionGranted = {
@@ -24,9 +25,8 @@ fun SetupNavGraph(
                 }
             )
         }
-        composable(route=Screen.Main.route){
+        composable(route = Screen.Main.route) {
             MainScreen()
         }
     }
-
 }

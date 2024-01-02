@@ -1,4 +1,4 @@
-package com.example.smsencrypt;
+package com.example.smsencrypt
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,12 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.permissions.ExperimentalPermissionsApi;
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 
-import kotlin.OptIn;
+import kotlin.OptIn
 @Composable
 fun PermissionScreen(onPermissionGranted:()->Unit){
     RequestSmsPermission(onPermissionGranted = onPermissionGranted)
@@ -59,7 +59,7 @@ fun RequestSmsPermission(onPermissionGranted: () -> Unit) {
                 text = textToShow,
                 textAlign = TextAlign.Center
             )
-            Button(onClick = {getpermission()}) {
+            Button(onClick = { getpermission()}) {
                 Text(text = "Przyznaj uprawnienia")
             }
 
@@ -67,6 +67,3 @@ fun RequestSmsPermission(onPermissionGranted: () -> Unit) {
     }
 
 }
-
-
-
