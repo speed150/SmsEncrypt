@@ -22,7 +22,7 @@ import com.example.smsencrypt.navigation.Screen
 
 @Composable
 fun NumberView(
-    sender:String,
+    sender: String,
     message: String,
     navController: NavController
 ){
@@ -32,7 +32,7 @@ fun NumberView(
             .wrapContentSize()
             .clickable {
                 //TODO wchodzenie w wiadomości z danego numeru[threadID]
-                navController.navigate(route = Screen.Message.route)
+                navController.navigate(route = Screen.Message.route+sender)
             },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background

@@ -27,7 +27,12 @@ import com.example.smsencrypt.model.SMSMessage
                     context = context,
                     type = "sent"
                 )
-            allMessages += messages.sortedBy { it.date }.groupBy { it.sender}
+            allMessages += messages.sortedBy { it.date }.groupBy {if(it.sender.substring(0,3)=="+48"){
+                it.sender.substring(3)
+            }
+            else{
+                it.sender
+            }}
         }
 
         LazyColumn(
