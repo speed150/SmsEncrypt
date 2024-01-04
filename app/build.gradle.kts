@@ -50,6 +50,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("android.arch.lifecycle:livedata:1.1.1")
     implementation("com.google.accompanist:accompanist-permissions:0.31.5-beta")
     implementation("androidx.navigation:navigation-compose:2.7.6")
     implementation("androidx.core:core-ktx:1.12.0")

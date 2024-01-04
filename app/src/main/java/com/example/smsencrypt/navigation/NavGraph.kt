@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.smsencrypt.MainScreen
+import com.example.smsencrypt.MessageScreen
 import com.example.smsencrypt.PermissionScreen
 
 
@@ -26,7 +27,11 @@ fun SetupNavGraph(
             )
         }
         composable(route = Screen.Main.route) {
-            MainScreen()
+            MainScreen(navController)
+        }
+        composable(route =Screen.Message.route
+        ){
+            MessageScreen(thread =1 )
         }
     }
 }

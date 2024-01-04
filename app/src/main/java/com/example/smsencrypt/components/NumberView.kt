@@ -1,6 +1,7 @@
 package com.example.smsencrypt.components
 
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,14 +17,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.smsencrypt.model.SMSMessage
+import androidx.navigation.NavController
+import com.example.smsencrypt.navigation.Screen
 
 @Composable
-fun NumberView(message: SMSMessage){
+fun NumberView(
+    sender:String,
+    message: String,
+    navController: NavController
+){
     Card(
         modifier= Modifier
             .padding(5.dp)
-            .wrapContentSize(),
+            .wrapContentSize()
+            .clickable {
+                //TODO wchodzenie w wiadomości z danego numeru[threadID]
+                navController.navigate(route = Screen.Message.route)
+            },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background
         ),
@@ -35,13 +45,14 @@ fun NumberView(message: SMSMessage){
             verticalAlignment = Alignment.Top
         ){
             Column(modifier = Modifier.padding(5.dp)) {
-                val text = if (message.message.length>20){
-                    message.message.substring(0,16)+"..."
+//                Text(text = sender)
+                val text = if (message.length>20){
+                    message.substring(0,16)+"..."
                 }
                 else{
-                    message.message
+                    message
                 }
-                Text(text = message.sender, fontSize = 24.sp)
+                Text(text = sender, fontSize = 24.sp)
                 Text(text =text , fontSize = 12.sp)
 
             }
