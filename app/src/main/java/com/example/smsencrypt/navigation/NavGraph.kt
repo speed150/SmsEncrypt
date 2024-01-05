@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.smsencrypt.MainScreen
 import com.example.smsencrypt.MessageScreen
+import com.example.smsencrypt.NewMessageView
 import com.example.smsencrypt.PermissionScreen
 
 
@@ -40,6 +41,9 @@ fun SetupNavGraph(
 
         ){sender->
             sender.arguments?.getString("sender")?.let { MessageScreen(Sender = it) }
+        }
+        composable( route=Screen.NewMessage.route){
+            NewMessageView()
         }
     }
 }
