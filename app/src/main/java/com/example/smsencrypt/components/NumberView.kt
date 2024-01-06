@@ -31,7 +31,6 @@ fun NumberView(
             .padding(5.dp)
             .wrapContentSize()
             .clickable {
-                //TODO wchodzenie w wiadomości z danego numeru[threadID]
                 navController.navigate(route = Screen.Message.route+sender)
             },
         colors = CardDefaults.cardColors(

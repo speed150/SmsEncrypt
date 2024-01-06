@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.smsencrypt.components.NumberView
 import com.example.smsencrypt.model.SMSMessage
+import com.example.smsencrypt.navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,7 +45,7 @@ fun MainScreen(navController: NavController) {
     }
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
+            FloatingActionButton(onClick = { navController.navigate(route = Screen.NewMessage.route) }) {
                 Icon(Icons.Default.Add,contentDescription = "NewMessage" )
             }
         }
