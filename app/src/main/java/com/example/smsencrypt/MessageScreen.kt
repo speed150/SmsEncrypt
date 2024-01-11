@@ -44,7 +44,7 @@ fun MessageScreen(Sender:String) {
             )
         threadMessages += messages.sortedBy { it.date }.filter { it.sender ==Sender||it.sender=="+48$Sender"}.groupBy {it.sender}
     }
-    Scaffold(bottomBar = {  SMSTextBar()}){
+    Scaffold(bottomBar = {  SMSTextBar(Sender)}){
         innerPadding->
         LazyColumn(
             modifier = Modifier

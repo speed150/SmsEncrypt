@@ -10,6 +10,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.smsencrypt.components.SMSTextBar
@@ -17,7 +21,8 @@ import com.example.smsencrypt.components.SMSTextBar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewMessageView() {
-    var RNumber =""
+    var RNumber by remember { mutableStateOf("")
+    }
 
     Scaffold(topBar = {
         Row(
