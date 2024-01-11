@@ -1,5 +1,8 @@
 package com.example.smsencrypt.components
 
+import android.content.Context
+import android.telephony.SmsManager
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -20,15 +23,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun SMSTextBar() {
-    var number=""
+fun SMSTextBar(number :String) {
+    val nr=number
     var text by remember { mutableStateOf("") }
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -36,12 +38,12 @@ fun SMSTextBar() {
             ,Arrangement.SpaceAround
 
             ) {
-
+            val context = LocalContext.current
 
         OutlinedTextField(modifier = Modifier.fillMaxWidth(0.75F), shape= RoundedCornerShape(25), placeholder = { Text(
             text = "SMS"
         )} , value = text, onValueChange ={text=it}, maxLines = 4)
-        Button(shape = RoundedCornerShape(30), modifier = Modifier.size(55.dp), onClick = {SendMessage(number)}) {
+        Button(shape = RoundedCornerShape(30), modifier = Modifier.size(55.dp), onClick = {SendMessage(nr,text, context = context)}) {
             Icon(Icons.Default.ArrowForward, contentDescription = "Send")
         }
 
@@ -50,6 +52,12 @@ fun SMSTextBar() {
 
     
 
-fun SendMessage(number: String){
-
+fun SendMessage(phoneNumber: String, message: String,context:Context) {
+    if (phoneNumber.length != 9){
+        Toast.makeText(context, "błędny numer telefonu", Toast.LENGTH_SHORT).show()
+    }
+    else{
+        val smsManager = SmsManager.getDefault()
+        smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+    }
 }

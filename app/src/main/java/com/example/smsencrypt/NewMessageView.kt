@@ -35,7 +35,8 @@ fun NewMessageView() {
             )
         }
     },
-        bottomBar = {SMSTextBar()}){
+        bottomBar = {SMSTextBar(RNumber
+        )}){
             innerPadding ->
         Column(
             modifier = Modifier
