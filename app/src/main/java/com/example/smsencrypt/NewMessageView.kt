@@ -18,11 +18,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.smsencrypt.components.SMSTextBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewMessageView() {
+fun NewMessageView(navController:NavController) {
     var RNumber by remember { mutableStateOf("")
     }
 
@@ -48,8 +49,10 @@ fun NewMessageView() {
             )
         }
     },
-        bottomBar = {SMSTextBar(RNumber
-        )}){
+        bottomBar = {
+            SMSTextBar(RNumber,navController)
+        }
+    ){
             innerPadding ->
         Column(
             modifier = Modifier

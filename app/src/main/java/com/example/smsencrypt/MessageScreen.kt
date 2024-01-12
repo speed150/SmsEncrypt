@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.NavController
 import com.example.smsencrypt.components.MessageView
 import com.example.smsencrypt.components.SMSTextBar
 import com.example.smsencrypt.components.SenderView
@@ -30,7 +31,7 @@ import com.example.smsencrypt.viewmodel.readMessages
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 //albo ponowne czytanie listy sms dzięki thread albo przekazanie całej rozmowy dict
-fun MessageScreen(Sender:String) {
+fun MessageScreen(Sender:String,navController: NavController) {
     val context= LocalContext.current
     val listState = rememberLazyListState()
 
@@ -42,9 +43,9 @@ fun MessageScreen(Sender:String) {
                 context = context,
                 type = "sent"
             )
-        threadMessages += messages.sortedBy { it.date }.filter { it.sender ==Sender||it.sender=="+48$Sender"}.groupBy {it.sender}
+        threadMessages += messages.sortedBy { it.date }.filter { it.sender ==Sender}.groupBy {it.sender}
     }
-    Scaffold(bottomBar = {  SMSTextBar(Sender)}){
+    Scaffold(bottomBar = {  SMSTextBar(Sender, navController = navController)}){
         innerPadding->
         LazyColumn(
             modifier = Modifier

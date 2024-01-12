@@ -40,10 +40,10 @@ fun SetupNavGraph(
             )
 
         ){sender->
-            sender.arguments?.getString("sender")?.let { MessageScreen(Sender = it) }
+            sender.arguments?.getString("sender")?.let { MessageScreen(Sender = it,navController) }
         }
         composable( route=Screen.NewMessage.route){
-            NewMessageView()
+            NewMessageView(navController)
         }
     }
 }

@@ -9,7 +9,7 @@ import com.example.smsencrypt.model.SMSMessage
 class SMSviewmodel(context: Context):ViewModel() {
 
 }
-public fun readMessages(context: Context, type: String): List<SMSMessage> {
+fun readMessages(context: Context, type: String): List<SMSMessage> {
     val messages = mutableListOf<SMSMessage>()
     val cursor = context.contentResolver.query(
         Uri.parse("content://sms/$type"),
@@ -31,7 +31,7 @@ public fun readMessages(context: Context, type: String): List<SMSMessage> {
             messages.add(
                 SMSMessage(
                     message = it.getString(indexMessage),
-                    sender = it.getString(indexSender),
+                    sender = it.getString(indexSender).removePrefix("+48"),
                     date = it.getLong(indexDate),
                     read = it.getString(indexRead).toBoolean(),
                     type = it.getInt(indexType),
