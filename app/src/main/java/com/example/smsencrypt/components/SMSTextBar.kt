@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.smsencrypt.navigation.Screen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,7 +53,10 @@ fun SMSTextBar(number :String, navController: NavController) {
             value = text,
             onValueChange ={text=it},
             maxLines = 4)
-            IconButton(onClick = {run{SendMessage(nr, text, context);text = ""}},
+            IconButton(onClick = {run{SendMessage(nr, text, context)
+                text = ""
+                navController.navigate(route = Screen.Message.route+nr)
+            }},
                 Modifier
                     .size(55.dp)
                     .clip(RoundedCornerShape(40))
