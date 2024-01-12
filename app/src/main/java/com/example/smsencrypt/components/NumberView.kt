@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.smsencrypt.model.decrypt
 import com.example.smsencrypt.navigation.Screen
 
 @Composable
@@ -37,19 +38,19 @@ fun NumberView(
             containerColor = MaterialTheme.colorScheme.background
         ),
         elevation = CardDefaults.cardElevation(5.dp)
-        ) {
+    ) {
         Row (
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.Top
         ){
             Column(modifier = Modifier.padding(5.dp)) {
-//                Text(text = sender)
-                val text = if (message.length>20){
-                    message.substring(0,16)+"..."
+
+                val text = if (decrypt(message).length>20){
+                    decrypt(message).substring(0,16)+"..."
                 }
                 else{
-                    message
+                    decrypt(message)
                 }
                 Text(text = sender, fontSize = 24.sp)
                 Text(text =text , fontSize = 12.sp)
@@ -57,6 +58,6 @@ fun NumberView(
             }
 
         }
-        
+
     }
 }

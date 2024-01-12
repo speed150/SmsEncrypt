@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.smsencrypt.model.SMSMessage
+import com.example.smsencrypt.model.decrypt
 import com.example.smsencrypt.model.parseDate
 
 @Composable
@@ -37,7 +38,7 @@ fun MessageView(message: SMSMessage) {
                     .fillMaxWidth()
                     .padding(all = 12.dp)
             ) {
-                Text(text = message.message)
+                Text(text = decrypt( message.message))
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     modifier = Modifier

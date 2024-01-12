@@ -19,18 +19,30 @@ fun Long.parseDate():String{
     return format.format(date)
 }
 fun encrypt( mess :String):String{
-    var cypher=""
+
+    var cypher="qaz"
     for (ch in mess){
         cypher+=(ch+4)
     }
-    return cypher
+    return  cypher
 }
 fun decrypt(cypher: String):String{
-    var mess=""
-    for (ch in cypher){
-        mess+=(ch-4)
+    if(cypher.length<3){
+        return  cypher
     }
-    return mess
+    else{
+         if(cypher.subSequence(0,3)=="qaz"){
+
+            val c =cypher.removePrefix("qaz")
+            var mess=""
+            for (ch in c){
+                mess+=(ch-4)
+            }
+             return mess
+        } else{
+             return cypher
+        }
+    }
 }
 //TODO model wszystkich wiadomości
 //TODO viewmodel posortowanych wiadomości(jest już w MainScreen prawie gotowy)

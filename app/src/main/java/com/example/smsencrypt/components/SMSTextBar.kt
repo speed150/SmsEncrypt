@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.smsencrypt.model.encrypt
 import com.example.smsencrypt.navigation.Screen
 
 
@@ -79,6 +80,6 @@ fun SendMessage(phoneNumber: String, message: String,context:Context) {
     }
     else{
         val smsManager = SmsManager.getDefault()
-        smsManager.sendTextMessage(phoneNumber, null, message, null, null)
+        smsManager.sendTextMessage(phoneNumber, null, encrypt( message), null, null)
     }
 }
