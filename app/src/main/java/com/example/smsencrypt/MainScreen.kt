@@ -29,7 +29,9 @@ import com.example.smsencrypt.viewmodel.readMessages
 fun MainScreen(navController: NavController) {
     val context = LocalContext.current
     val allMessages = remember { mutableStateMapOf<String, List<SMSMessage>>() }
-
+    val result = remember {
+        mutableMapOf<String,List<SMSMessage>>()
+    }
     LaunchedEffect(key1 = Unit) {
         val messages =
             readMessages(context = context, type = "inbox") + readMessages(
@@ -37,6 +39,11 @@ fun MainScreen(navController: NavController) {
                 type = "sent"
             )
         allMessages += messages.sortedBy { it.date }.groupBy { it.sender }
+        val sth = allMessages.toList().sortedByDescending{ it.second.last().date}
+        val a = sth.map{ it.first to it.second}.toMap()
+        result += a
+
+
     }
     Scaffold(
         floatingActionButton = {
@@ -52,7 +59,7 @@ fun MainScreen(navController: NavController) {
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.surface)
         ) {
-            allMessages.forEach{
+            result.forEach{
                     (sender,message)->
                 item {
                     NumberView(
@@ -62,6 +69,8 @@ fun MainScreen(navController: NavController) {
                     )
                 }
             }
+
         }
     }
 }
+
