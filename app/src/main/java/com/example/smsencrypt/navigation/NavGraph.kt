@@ -10,27 +10,29 @@ import com.example.smsencrypt.MainScreen
 import com.example.smsencrypt.MessageScreen
 import com.example.smsencrypt.NewMessageView
 import com.example.smsencrypt.PermissionScreen
+import com.example.smsencrypt.viewmodel.SMSviewmodel
 
 
 @Composable
 fun SetupNavGraph(
     navController: NavHostController,
-    startDestination: String = Screen.Permission.route
+    viewModel:SMSviewmodel
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination
+        startDestination = Screen.Permission.route
     ) {
         composable(route = Screen.Permission.route) {
             PermissionScreen(
                 onPermissionGranted = {
                     navController.popBackStack()
                     navController.navigate(Screen.Main.route)
-                }
+                },
+                viewModel
             )
         }
         composable(route = Screen.Main.route) {
-            MainScreen(navController)
+            MainScreen(navController,viewModel)
         }
         composable(route =Screen.Message.route+"{sender}",
             arguments = listOf(
@@ -40,10 +42,10 @@ fun SetupNavGraph(
             )
 
         ){sender->
-            sender.arguments?.getString("sender")?.let { MessageScreen(Sender = it,navController) }
+            sender.arguments?.getString("sender")?.let { MessageScreen(Sender = it,navController,viewModel) }
         }
         composable( route=Screen.NewMessage.route){
-            NewMessageView(navController)
+            NewMessageView(navController,viewModel)
         }
     }
 }

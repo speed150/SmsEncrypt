@@ -31,11 +31,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.smsencrypt.model.encrypt
 import com.example.smsencrypt.navigation.Screen
+import com.example.smsencrypt.viewmodel.SMSviewmodel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SMSTextBar(number :String, navController: NavController) {
+fun SMSTextBar(number :String, navController: NavController,new:Boolean,viewModel: SMSviewmodel) {
     val nr=number
     var text by remember { mutableStateOf("") }
         Row(modifier = Modifier
@@ -54,9 +55,13 @@ fun SMSTextBar(number :String, navController: NavController) {
             value = text,
             onValueChange ={text=it},
             maxLines = 4)
-            IconButton(onClick = {run{SendMessage(nr, text, context)
+            IconButton(onClick = {run{SendMessage(nr, text, context,viewModel)
                 text = ""
+                if (new){
                 navController.navigate(route = Screen.Message.route+nr)
+                }
+
+
             }},
                 Modifier
                     .size(55.dp)
@@ -70,7 +75,7 @@ fun SMSTextBar(number :String, navController: NavController) {
 
     
 
-fun SendMessage(phoneNumber: String, message: String,context:Context) {
+fun SendMessage(phoneNumber: String, message: String,context:Context,viewModel: SMSviewmodel) {
 
     if (phoneNumber.length != 9){
         Toast.makeText(context, "błędny numer telefonu", Toast.LENGTH_SHORT).show()
@@ -81,5 +86,6 @@ fun SendMessage(phoneNumber: String, message: String,context:Context) {
     else{
         val smsManager = SmsManager.getDefault()
         smsManager.sendTextMessage(phoneNumber, null, encrypt( message), null, null)
+        viewModel.updateAllMessages(context)
     }
 }

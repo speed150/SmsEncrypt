@@ -2,12 +2,24 @@ package com.example.smsencrypt.viewmodel
 
 import android.content.Context
 import android.net.Uri
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.smsencrypt.model.SMSMessage
 
 
-class SMSviewmodel(context: Context):ViewModel() {
+class SMSviewmodel:ViewModel() {
 
+    private  val _allMessages = MutableLiveData<MutableMap<String,List<SMSMessage>>>()
+    val allMessages :LiveData<MutableMap<String,List<SMSMessage>>> get()=_allMessages
+    fun updateAllMessages(context: Context){
+        val messages = readMessages(context = context, type = "inbox") +
+                readMessages(context,"sent")
+        val msg = mutableMapOf<String,List<SMSMessage>>()
+        msg += messages.sortedBy { it.date }.groupBy { it.sender }
+
+        _allMessages.value = msg
+    }
 }
 fun readMessages(context: Context, type: String): List<SMSMessage> {
     val messages = mutableListOf<SMSMessage>()

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -18,7 +17,6 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 import com.example.smsencrypt.components.MessageView
@@ -26,33 +24,33 @@ import com.example.smsencrypt.components.SMSTextBar
 import com.example.smsencrypt.components.SenderView
 import com.example.smsencrypt.model.SMSMessage
 import com.example.smsencrypt.model.parseDate
-import com.example.smsencrypt.viewmodel.readMessages
+import com.example.smsencrypt.viewmodel.SMSviewmodel
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 //albo ponowne czytanie listy sms dzięki thread albo przekazanie całej rozmowy dict
-fun MessageScreen(Sender:String,navController: NavController) {
-    val context= LocalContext.current
-    val listState = rememberLazyListState()
+fun MessageScreen(Sender:String,navController: NavController,viewModel: SMSviewmodel) {
 
     val threadMessages= remember { mutableStateMapOf<String, List<SMSMessage>>() }
+    val b = remember {mutableListOf<SMSMessage>()}
 
-    LaunchedEffect(key1 = Unit ){
-        val messages =
-            readMessages(context = context, type = "inbox") + readMessages(
-                context = context,
-                type = "sent"
-            )
-        threadMessages += messages.sortedBy { it.date }.filter { it.sender ==Sender}.groupBy {it.sender}
+
+    LaunchedEffect(key1 = Unit){
+    val messages  = viewModel.allMessages.value
+    if (threadMessages.size>0){
+    b += threadMessages.values.first()
     }
-    Scaffold(bottomBar = {  SMSTextBar(Sender, navController = navController)}){
+    val a = messages!!.filterKeys { it ==Sender }
+    threadMessages += a
+    }
+    Scaffold(bottomBar = {  SMSTextBar(Sender, navController,false,viewModel)}){
         innerPadding->
         LazyColumn(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background),
-            state=listState
+
         ){threadMessages
             .forEach { (sender, messages) ->
                 stickyHeader(key = sender) {
