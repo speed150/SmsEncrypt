@@ -27,8 +27,7 @@ fun SetupNavGraph(
                 onPermissionGranted = {
                     navController.popBackStack()
                     navController.navigate(Screen.Main.route)
-                },
-                viewModel
+                }
             )
         }
         composable(route = Screen.Main.route) {

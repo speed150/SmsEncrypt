@@ -17,10 +17,12 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 
-import kotlin.OptIn
 @Composable
 fun PermissionScreen(onPermissionGranted:()->Unit){
+
     RequestSmsPermission(onPermissionGranted = onPermissionGranted)
+
+
 }
 
 
@@ -33,9 +35,13 @@ fun RequestSmsPermission(onPermissionGranted: () -> Unit) {
     val sendSmsPermission = rememberPermissionState(
         android.Manifest.permission.SEND_SMS
     )
+    val receiveSmsPermission = rememberPermissionState(
+        android.Manifest.permission.RECEIVE_SMS
+    )
     fun getpermission(){
         readSmsPermission.launchPermissionRequest()
         sendSmsPermission.launchPermissionRequest()
+        receiveSmsPermission.launchPermissionRequest()
     }
     if (readSmsPermission.status.isGranted && sendSmsPermission.status.isGranted){
         onPermissionGranted()
