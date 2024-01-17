@@ -25,6 +25,7 @@ import com.example.smsencrypt.viewmodel.SMSviewmodel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewMessageView(navController:NavController,viewModel: SMSviewmodel) {
+    //tworzenie nowej wiadomości
     var RNumber by remember { mutableStateOf("")
     }
 

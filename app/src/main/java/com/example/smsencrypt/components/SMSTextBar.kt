@@ -36,6 +36,7 @@ import com.example.smsencrypt.viewmodel.SMSviewmodel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+//pole do wpisywania widomości
 fun SMSTextBar(number :String, navController: NavController,new:Boolean,viewModel: SMSviewmodel) {
     val nr=number
     var text by remember { mutableStateOf("") }

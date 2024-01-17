@@ -28,8 +28,8 @@ import com.example.smsencrypt.viewmodel.SMSviewmodel
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
-//albo ponowne czytanie listy sms dzięki thread albo przekazanie całej rozmowy dict
 fun MessageScreen(Sender:String,navController: NavController,viewModel: SMSviewmodel) {
+    //wyświetlanie widomości od danego adresata
 
     val threadMessages= remember { mutableStateMapOf<String, List<SMSMessage>>() }
     val b = remember {mutableListOf<SMSMessage>()}
@@ -83,10 +83,4 @@ fun MessageScreen(Sender:String,navController: NavController,viewModel: SMSviewm
 
         }
     }
-
-
-
-    }
-
-
-
+}

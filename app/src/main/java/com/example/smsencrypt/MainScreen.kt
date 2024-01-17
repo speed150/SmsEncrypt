@@ -32,6 +32,7 @@ viewModel.updateAllMessages(context = LocalContext.current)
     }
 
         val sth = allMessages!!.toList().sortedByDescending{ it.second.last().date}
+    //sortowanie listy względem dat
         val a = sth.map{ it.first to it.second}.toMap()
         result += a
     Scaffold(

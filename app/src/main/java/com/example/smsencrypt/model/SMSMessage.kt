@@ -32,7 +32,6 @@ fun decrypt(cypher: String):String{
     }
     else{
          if(cypher.subSequence(0,3)=="qaz"){
-
             val c =cypher.removePrefix("qaz")
             var mess=""
             for (ch in c){
@@ -44,6 +43,3 @@ fun decrypt(cypher: String):String{
         }
     }
 }
-//TODO model wszystkich wiadomości
-//TODO viewmodel posortowanych wiadomości(jest już w MainScreen prawie gotowy)
-//TODO wiewmodel rozmów(SMSMessage.thread)[ostatniawiadomość z danegej rozmowy]

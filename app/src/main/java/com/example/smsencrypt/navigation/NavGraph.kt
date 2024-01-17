@@ -12,8 +12,8 @@ import com.example.smsencrypt.NewMessageView
 import com.example.smsencrypt.PermissionScreen
 import com.example.smsencrypt.viewmodel.SMSviewmodel
 
-
 @Composable
+//nawigacja w aplikacji między ekranami
 fun SetupNavGraph(
     navController: NavHostController,
     viewModel:SMSviewmodel
@@ -39,7 +39,6 @@ fun SetupNavGraph(
                     type = NavType.StringType
                 }
             )
-
         ){sender->
             sender.arguments?.getString("sender")?.let { MessageScreen(Sender = it,navController,viewModel) }
         }

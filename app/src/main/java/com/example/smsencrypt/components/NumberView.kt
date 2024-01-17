@@ -22,6 +22,7 @@ import com.example.smsencrypt.model.decrypt
 import com.example.smsencrypt.navigation.Screen
 
 @Composable
+//widok numeru z widomością
 fun NumberView(
     sender: String,
     message: String,

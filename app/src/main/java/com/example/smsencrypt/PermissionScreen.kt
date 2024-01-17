@@ -29,6 +29,7 @@ fun PermissionScreen(onPermissionGranted:()->Unit){
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun RequestSmsPermission(onPermissionGranted: () -> Unit) {
+    //permisje do aplikacji
     val readSmsPermission = rememberPermissionState(
         android.Manifest.permission.READ_SMS
     )

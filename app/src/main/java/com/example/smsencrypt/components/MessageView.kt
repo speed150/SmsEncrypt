@@ -21,6 +21,7 @@ import com.example.smsencrypt.model.decrypt
 import com.example.smsencrypt.model.parseDate
 
 @Composable
+//widok pojedynczej wiadomości
 fun MessageView(message: SMSMessage) {
     Row(
         modifier = Modifier.fillMaxWidth(),

@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-
+//header z numerem
 fun SenderView(sender: String) {
     Box(
         modifier = Modifier
